@@ -1,0 +1,16 @@
+﻿.textContainer
+{
+    height: 200px;
+    background: silver;
+    position: relative;
+}
+
+.textContainer p {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+

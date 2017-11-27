@@ -1,0 +1,42 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+</head>
+<body>
+    <h2>Lets Play</h2>
+
+    <form *ngIf="articles">
+        <select class="selectpicker" id="selectpicker" [(ngModel)]="selectpicker" name="selectpicker">
+            <option *ngFor="let article of articles;let i=index" [ngValue]="article.page_id" id="{{article.page_id}}">{{i}} - {{article.title}}</option>
+        </select>
+        <button type="button" class="btn btn-primary" (click)="chooseArticle();">Play with article</button>
+    </form>
+
+    <div *ngIf="hassentence">
+        <p><strong>{{sentence}}</strong></p>
+
+        <form name="form" (ngSubmit)="make_guess()" #f="ngForm" novalidate>
+            <div class="form-group">
+                <label for="guess">Your Guess</label>
+                <input type="text" class="form-control" name="username" [(ngModel)]="guess.text" #username="ngModel" required />
+            </div>
+            <div class="form-group" [routerLinkActive]="">
+                <button [disabled]="loading" class="btn btn-primary">Make a guess</button>
+            </div>
+        </form>
+    </div>
+
+    <div *ngIf="hadguess">
+        <p class="alert alert-info" role="alert">{{guess_res.text.message}}</p>
+        <button [disabled]="loading" class="btn btn-primary" (click)="reload();">Next!</button>
+    </div>
+
+    <div class="bottom-right">
+        <a href="#" class="btn btn-info btn-lg pull-right">
+            <span class="glyphicon glyphicon-log-out" (click)="logout"></span> Log out
+        </a>
+    </div>
+</body>
+</html>
